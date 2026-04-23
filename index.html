@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#ffffff">
-    <title>Viettel Starlink Maritime - Full Suite</title>
+    <title>Viettel Starlink Maritime - AI Powered</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -30,11 +30,33 @@
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal.active { display: flex; align-items: center; justify-content: center; }
         
+        /* AI Sparkle Effect */
+        .ai-gradient {
+            background: linear-gradient(135deg, #ee0000 0%, #ff6b6b 100%);
+        }
+        .ai-button {
+            background: linear-gradient(90deg, #EE0000, #ff4d4d);
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+        .ai-button:hover::after {
+            left: 120%;
+        }
+
         /* Status Styles */
         .status-active { background-color: #ecfdf5; border: 1px solid #10b981; color: #065f46; }
         .status-expired { background-color: #fef2f2; border: 1px solid #f87171; color: #991b1b; }
-        .ship-online { color: #10b981; }
-        .ship-offline { color: #9ca3af; }
         
         /* Web App Optimizations */
         * { -webkit-tap-highlight-color: transparent; }
@@ -65,8 +87,8 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 flex-shrink-0 ml-2">
-                    <button onclick="openOrderModal()" class="bg-viettel-red text-white px-3 sm:px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition flex items-center select-none shadow-sm shadow-red-200">
-                        <i class="fas fa-plus sm:mr-2"></i><span class="hidden sm:inline">Tạo đơn hàng</span>
+                    <button onclick="openOrderModal()" class="ai-button text-white px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition flex items-center select-none shadow-sm shadow-red-200">
+                        <i class="fas fa-sparkles mr-2"></i><span class="hidden sm:inline">✨ Tư vấn AI</span>
                     </button>
                 </div>
             </div>
@@ -77,585 +99,126 @@
     <main class="app-content bg-[#f4f7f6]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24 w-full">
         
-          <!-- PAGE: OVERVIEW (Nhúng nội dung từ basecode) -->
+          <!-- PAGE: OVERVIEW -->
         <section id="page-overview" class="page-content active">
             <div class="flex justify-between items-end mb-6">
                 <div>
                     <h1 class="text-2xl font-bold text-gray-800">Giám sát vận hành kết nối</h1>
-                    <p class="text-gray-500 text-sm">Quản lý thiết bị và các gói cước Starlink mới nhất 2026</p>
-                </div>
-                <div class="flex bg-white border rounded-lg p-1 shadow-sm">
-                    <button class="px-4 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-md">Xuất Excel</button>
-                    <button class="px-4 py-1.5 text-sm font-medium bg-red-50 text-viettel-red rounded-md">Hôm nay</button>
-                    <button class="px-4 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-md">7 ngày trước</button>
+                    <p class="text-gray-500 text-sm">Hệ thống quản lý tích hợp AI ✨</p>
                 </div>
             </div>
 
             <!-- Top Statistics -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 card-stat">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                     <div class="flex justify-between items-start mb-2">
                         <div class="p-2 bg-blue-50 text-blue-600 rounded-lg"><i class="fas fa-ship text-xl"></i></div>
-                        <span class="text-green-500 text-xs font-bold"><i class="fas fa-arrow-up"></i> 2%</span>
                     </div>
                     <div class="text-2xl font-bold text-gray-800">53,682</div>
-                    <div class="text-gray-500 text-sm">Tổng số thiết bị</div>
+                    <div class="text-gray-500 text-sm">Thiết bị</div>
                 </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 card-stat">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                     <div class="flex justify-between items-start mb-2">
                         <div class="p-2 bg-green-50 text-green-600 rounded-lg"><i class="fas fa-signal text-xl"></i></div>
-                        <span class="text-green-500 text-xs font-bold">Trực tuyến</span>
                     </div>
                     <div class="text-2xl font-bold text-gray-800">35,789</div>
-                    <div class="text-gray-500 text-sm">Đang hoạt động</div>
+                    <div class="text-gray-500 text-sm">Trực tuyến</div>
                 </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 card-stat">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                     <div class="flex justify-between items-start mb-2">
                         <div class="p-2 bg-yellow-50 text-yellow-600 rounded-lg"><i class="fas fa-calendar-alt text-xl"></i></div>
-                        <span class="text-yellow-600 text-xs font-bold">Cần gia hạn</span>
                     </div>
                     <div class="text-2xl font-bold text-gray-800">1,752</div>
-                    <div class="text-gray-500 text-sm">Sắp hết hạn gói cước</div>
+                    <div class="text-gray-500 text-sm">Cần gia hạn</div>
                 </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 card-stat">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                     <div class="flex justify-between items-start mb-2">
                         <div class="p-2 bg-red-50 text-viettel-red rounded-lg"><i class="fas fa-unlink text-xl"></i></div>
-                        <span class="text-red-500 text-xs font-bold">Cảnh báo</span>
                     </div>
                     <div class="text-2xl font-bold text-gray-800">124</div>
-                    <div class="text-gray-500 text-sm">Mất tín hiệu > 6h</div>
+                    <div class="text-gray-500 text-sm">Cảnh báo lỗi</div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 space-y-6">
-                    <!-- Usage Chart -->
+                    <!-- Usage Chart with AI Insights -->
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <div class="flex justify-between items-center mb-6">
                             <div>
                                 <h3 class="font-bold text-gray-800">Lưu lượng thời gian thực (Mbps)</h3>
-                                <p class="text-[10px] text-gray-400">Dung lượng sử dụng trung bình trong 24h qua</p>
                             </div>
-                            <div class="flex space-x-3">
-                                <div class="flex items-center text-[10px] font-bold text-emerald-600">
-                                    <span class="w-2 h-2 bg-emerald-500 rounded-full mr-1"></span> Basic
-                                </div>
-                                <div class="flex items-center text-[10px] font-bold text-red-600">
-                                    <span class="w-2 h-2 bg-red-600 rounded-full mr-1"></span> Standard
-                                </div>
-                                <div class="flex items-center text-[10px] font-bold text-blue-600">
-                                    <span class="w-2 h-2 bg-blue-600 rounded-full mr-1"></span> Premium
-                                </div>
-                            </div>
+                            <button onclick="analyzeTraffic()" class="text-[11px] font-bold text-viettel-red bg-red-50 px-3 py-1 rounded-full border border-red-100 hover:bg-red-100">
+                                ✨ Phân tích lưu lượng bằng AI
+                            </button>
                         </div>
-                        <div class="h-80 w-full">
+                        <div class="h-64 w-full">
                             <canvas id="usageChart"></canvas>
                         </div>
+                        <div id="ai-insight-box" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-100 hidden">
+                            <p class="text-xs text-blue-800 italic" id="ai-insight-text"></p>
+                        </div>
                     </div>
 
-                    <!-- Service Plans Section -->
+                    <!-- Service Plans -->
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-widest">Danh sách thiết bị & Gói cước mới nhất</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                           <!-- Plan 1: Starlink Mini -->
-                            <div class="border-2 border-emerald-500 rounded-2xl p-4 bg-white relative overflow-hidden flex flex-col justify-between plan-card shadow-sm">
-                                <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[9px] px-2 py-1 rounded-bl-lg font-bold uppercase tracking-tighter">Basic</div>
-                                <div>
-                                    <div class="text-[10px] font-bold text-emerald-600 mb-1 uppercase tracking-tight">Bộ Starlink Mini</div>
-                                    <div class="text-lg font-black mb-1 leading-none text-gray-800">100–300 Mbps</div>
-                                    <ul class="text-[10px] space-y-1 text-gray-600 mb-4 mt-2">
-                                        <li><i class="fas fa-suitcase text-emerald-500 mr-2"></i>Dễ mang theo, du lịch</li>
-                                        <li><i class="fas fa-tint text-emerald-500 mr-2"></i>Chống nước chuẩn IP54</li>
-                                        <li><i class="fas fa-thermometer-half text-emerald-500 mr-2"></i>Chịu nắng gắt/sương giá</li>
-                                        <li><i class="fas fa-users text-emerald-500 mr-2"></i>Cá nhân, freelancer, du lịch</li>
-                                    </ul>
-                                </div>
-                                <div class="pt-3 border-t border-gray-100">
-                                    <div class="text-sm font-bold text-gray-800">13.900.000 ₫</div>
-                                    <div class="text-[9px] text-gray-400 font-bold uppercase">Du lịch và làm việc di động</div>
-                                </div>
+                        <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-widest">Gói cước đề xuất</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="plans-container">
+                            <!-- Basic -->
+                            <div class="border-2 border-emerald-500 rounded-2xl p-4 bg-white relative flex flex-col justify-between">
+                                <div class="text-lg font-black text-gray-800">Basic</div>
+                                <div class="text-sm font-bold text-emerald-600 mt-2">13.9tr VNĐ</div>
+                                <button class="mt-4 w-full py-2 bg-emerald-500 text-white text-[10px] font-bold rounded-lg">CHI TIẾT</button>
                             </div>
-
-                            <!-- Plan 2: Starlink Enterprise -->
-                            <div class="border-2 border-red-600 rounded-2xl p-4 bg-white relative overflow-hidden flex flex-col justify-between plan-card shadow-sm">
-                                <div class="absolute top-0 right-0 bg-red-600 text-white text-[9px] px-2 py-1 rounded-bl-lg font-bold uppercase tracking-tighter">Standard</div>
-                                <div>
-                                    <div class="text-[10px] font-bold text-red-600 mb-1 uppercase tracking-tight">Bộ Starlink Doanh Nghiệp</div>
-                                    <div class="text-lg font-black mb-1 leading-none text-gray-800">150–450 Mbps</div>
-                                    <ul class="text-[10px] space-y-1 text-gray-600 mb-4 mt-2">
-                                        <li><i class="fas fa-bolt text-red-600 mr-2"></i>Băng thông ưu tiên cao</li>
-                                        <li><i class="fas fa-tint text-red-600 mr-2"></i>Chống nước chuẩn IP67</li>
-                                        <li><i class="fas fa-headset text-red-600 mr-2"></i>Hỗ trợ 24/7 VIP</li>
-                                        <li><i class="fas fa-building text-red-600 mr-2"></i>Tổ chức, Doanh nghiệp</li>
-                                    </ul>
-                                </div>
-                                <div class="pt-3 border-t border-gray-100">
-                                    <div class="text-sm font-bold text-viettel-red">15.900.000 ₫</div>
-                                    <div class="text-[9px] text-gray-400 font-bold uppercase">Giải pháp chuyên nghiệp</div>
-                                </div>
+                            <!-- Standard -->
+                            <div class="border-2 border-red-600 rounded-2xl p-4 bg-white relative flex flex-col justify-between scale-105 shadow-lg">
+                                <div class="text-lg font-black text-gray-800">Standard</div>
+                                <div class="text-sm font-bold text-red-600 mt-2">15.9tr VNĐ</div>
+                                <button class="mt-4 w-full py-2 bg-red-600 text-white text-[10px] font-bold rounded-lg">PHỔ BIẾN NHẤT</button>
                             </div>
-
-                            <!-- Plan 3: Bộ Starlink Cao Cấp (UPDATED) -->
-                            <div class="border-2 border-blue-600 rounded-2xl p-4 bg-white relative overflow-hidden flex flex-col justify-between plan-card shadow-sm">
-                                <div class="absolute top-0 right-0 bg-blue-600 text-white text-[9px] px-2 py-1 rounded-bl-lg font-bold uppercase tracking-tighter">Premium</div>
-                                <div>
-                                    <div class="text-[10px] font-bold text-blue-600 mb-1 uppercase tracking-tight">Bộ Starlink Cao Cấp</div>
-                                    <div class="text-lg font-black mb-1 leading-none text-gray-800">200–450 Mbps</div>
-                                    <ul class="text-[10px] space-y-1 text-gray-600 mb-4 mt-2">
-                                        <li><i class="fas fa-balance-scale text-blue-600 mr-2"></i>Cân bằng hiệu suất và giá</li>
-                                        <li><i class="fas fa-tint text-blue-600 mr-2"></i>Chống nước chuẩn IP67</li>
-                                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Kết nối ổn định mọi lúc</li>
-                                        <li><i class="fas fa-users text-blue-600 mr-2"></i>Văn phòng nhỏ, Du thuyền</li>
-                                    </ul>
-                                </div>
-                                <div class="pt-3 border-t border-gray-100">
-                                    <div class="text-sm font-bold text-gray-800">17.900.000 ₫</div>
-                                    <div class="text-[9px] text-gray-400 font-bold uppercase">Internet Vệ Tinh Siêu Tốc</div>
-                                </div>
+                            <!-- Premium -->
+                            <div class="border-2 border-blue-600 rounded-2xl p-4 bg-white relative flex flex-col justify-between">
+                                <div class="text-lg font-black text-gray-800">Premium</div>
+                                <div class="text-sm font-bold text-blue-600 mt-2">17.9tr VNĐ</div>
+                                <button class="mt-4 w-full py-2 bg-blue-600 text-white text-[10px] font-bold rounded-lg">CHI TIẾT</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sidebar column -->
+                <!-- Sidebar -->
                 <div class="space-y-6">
-                    <!-- Network Status -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div class="p-4 border-b bg-gray-50/50">
-                            <h4 class="font-bold text-xs text-gray-800 uppercase tracking-wider">Trạng thái mạng lưới</h4>
-                        </div>
-                        <div class="p-4 space-y-4">
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"></div>
-                                <p class="text-[11px] text-gray-600">Đã cập nhật Firmware cho toàn bộ <strong>Bộ Starlink Cao Cấp</strong>.</p>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
-                                <p class="text-[11px] text-gray-600">Gói <strong>Standard</strong> ghi nhận mức tăng trưởng 15% trong tháng.</p>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="w-2 h-2 rounded-full bg-red-500 mt-1.5 flex-shrink-0"></div>
-                                <p class="text-[11px] text-gray-600">Cảnh báo: 124 thiết bị mất tín hiệu tại khu vực vịnh Bắc Bộ.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- NEW BLOCK: Sắp hết hạn dung lượng -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div class="p-4 flex justify-between items-center">
-                            <h4 class="font-bold text-sm text-gray-800">Sắp hạn dung lượng</h4>
-                            <a href="#" class="text-[11px] text-blue-600 hover:underline">Xem tất cả</a>
-                        </div>
-                        <div class="px-4 pb-4">
-                            <div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase mb-3 px-1">
-                                <span>Mã thiết bị</span>
-                                <span>Dung lượng còn</span>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="flex justify-between items-center px-1">
-                                    <span class="text-xs font-semibold text-gray-700">STAR-77889910</span>
-                                    <span class="text-xs font-bold text-red-600">0.5 GB</span>
-                                </div>
-                                <div class="flex justify-between items-center px-1">
-                                    <span class="text-xs font-semibold text-gray-700">STAR-77889911</span>
-                                    <span class="text-xs font-bold text-red-600">1.2 GB</span>
-                                </div>
-                                <div class="flex justify-between items-center px-1">
-                                    <span class="text-xs font-semibold text-gray-700">STAR-77889912</span>
-                                    <span class="text-xs font-bold text-orange-500">3.8 GB</span>
-                                </div>
-                                <div class="flex justify-between items-center px-1">
-                                    <span class="text-xs font-semibold text-gray-700">STAR-77889913</span>
-                                    <span class="text-xs font-bold text-orange-500">5.1 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- NEW BLOCK: Hiệu suất theo biển số -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div class="p-4 flex justify-between items-center">
-                            <h4 class="font-bold text-sm text-gray-800">Hiệu suất sử dụng theo thiết bị</h4>
-                            <a href="#" class="text-[11px] text-blue-600 hover:underline">Lọc thiết bị</a>
-                        </div>
-                        <div class="px-4 pb-6 space-y-6">
-                            <!-- Item 1 -->
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center">
-                                        <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                                        <span class="text-xs font-semibold text-gray-600">STAR-77889913</span>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-800">45.2 GB</span>
-                                </div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                    <div class="bg-blue-500 h-1.5 rounded-full" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <!-- Item 2 -->
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center">
-                                        <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                                        <span class="text-xs font-semibold text-gray-600">STAR-77889914</span>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-800">12.5 GB</span>
-                                </div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                    <div class="bg-purple-500 h-1.5 rounded-full" style="width: 40%"></div>
-                                </div>
-                            </div>
-                            <!-- Item 3 -->
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <div class="flex items-center">
-                                        <div class="w-2 h-2 rounded-full bg-red-600 mr-2"></div>
-                                        <span class="text-xs font-semibold text-gray-600">STAR-77889915</span>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-800">8.9 GB</span>
-                                </div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                    <div class="bg-red-600 h-1.5 rounded-full" style="width: 25%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE: SALES (BÁN HÀNG & ONBOARDING) -->
-        <section id="page-sales" class="page-content">
-            <div class="mb-8 flex justify-between items-center">
-                <div>
-                    <h1 class="text-2xl font-bold text-gray-900">Quản lý Bán hàng & Onboarding</h1>
-                    <p class="text-gray-600">Đăng ký mới, cấp phát thiết bị và theo dõi tiến độ lắp đặt.</p>
-                </div>
-                <button onclick="openOrderModal()" class="bg-viettel-red text-white px-6 py-2 rounded-lg font-bold shadow-lg shadow-red-200 hover:bg-red-700 transition">
-                    <i class="fas fa-plus mr-2"></i>HỢP ĐỒNG MỚI
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-xl card-shadow border-l-4 border-blue-500">
-                    <p class="text-xs font-bold text-gray-400 uppercase">Đang chờ khảo sát</p>
-                    <p class="text-2xl font-bold">12</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card-shadow border-l-4 border-yellow-500">
-                    <p class="text-xs font-bold text-gray-400 uppercase">Đang lắp đặt</p>
-                    <p class="text-2xl font-bold">05</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card-shadow border-l-4 border-green-500">
-                    <p class="text-xs font-bold text-gray-400 uppercase">Hoàn tất Onboarding</p>
-                    <p class="text-2xl font-bold">48</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl card-shadow overflow-hidden">
-                <table class="w-full text-left border-collapse">
-                    <thead class="bg-gray-50 text-xs font-bold text-gray-500 uppercase">
-                        <tr>
-                            <th class="px-6 py-4">Mã hợp đồng</th>
-                            <th class="px-6 py-4">Chủ tàu / Đơn vị</th>
-                            <th class="px-6 py-4">Gói dịch vụ</th>
-                            <th class="px-6 py-4">Ngày đăng ký</th>
-                            <th class="px-6 py-4">Trạng thái</th>
-                            <th class="px-6 py-4 text-right">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm divide-y">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 font-bold">HD-VT-00124</td>
-                            <td class="px-6 py-4">
-                                <p class="font-medium text-gray-900">Nguyễn Văn A</p>
-                                <p class="text-[10px] text-gray-500">Quảng Ngãi • 0987.xxx.xxx</p>
-                            </td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 bg-red-50 text-viettel-red rounded text-[10px] font-bold">Standard</span></td>
-                            <td class="px-6 py-4 text-gray-500 ">22/03/2024</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-[10px] font-bold">ĐANG LẮP ĐẶT</span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-blue-600 hover:underline font-bold text-xs mr-3">Chi tiết</button>
-                                <button class="text-gray-400 hover:text-viettel-red"><i class="fas fa-ellipsis-v"></i></button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 font-bold">HD-VT-00125</td>
-                            <td class="px-6 py-4">
-                                <p class="font-medium text-gray-900">HTX Thủy Sản Bình Minh</p>
-                                <p class="text-[10px] text-gray-500">Kiên Giang • 0912.xxx.xxx</p>
-                            </td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-[10px] font-bold">Premium</span></td>
-                            <td class="px-6 py-4 text-gray-500 ">25/03/2024</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold">CHỜ KHẢO SÁT</span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-blue-600 hover:underline font-bold text-xs mr-3">Chi tiết</button>
-                                <button class="text-gray-400 hover:text-viettel-red"><i class="fas fa-ellipsis-v"></i></button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 font-bold">HD-VT-00126</td>
-                            <td class="px-6 py-4">
-                                <p class="font-medium text-gray-900">Nguyễn Văn B</p>
-                                <p class="text-[10px] text-gray-500">Quảng Nam • 0987.xxx.xxx</p>
-                            </td>
-                            <td class="px-6 py-4"><span class="px-2 py-1 bg-green-50 text-green-600 rounded text-[10px] font-bold">Basic</span></td>
-                            <td class="px-6 py-4 text-gray-500 ">22/03/2024</td>
-                            <td class="px-6 py-4">
-                                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[10px] font-bold">ĐÃ LẮP ĐẶT</span>
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="text-blue-600 hover:underline font-bold text-xs mr-3">Chi tiết</button>
-                                <button class="text-gray-400 hover:text-viettel-red"><i class="fas fa-ellipsis-v"></i></button>
-                            </td>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- PAGE: SUBSCRIPTION (GIA HẠN GÓI CƯỚC) -->
-        <section id="page-subscription" class="page-content">
-             <div class="mb-8">
-                <h1 class="text-2xl font-bold text-gray-900">Quản lý Gia hạn & Gói cước</h1>
-                <p class="text-gray-600">Gia hạn nhanh chóng và chuyển đổi gói cước Starlink linh hoạt.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                <!-- Bộ lọc & Danh sách -->
-                <div class="lg:col-span-3 space-y-6">
-                    <!-- Search bar -->
-                    <div class="flex gap-4">
-                        <div class="relative flex-grow">
-                            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" placeholder="Tìm kiếm tàu hoặc số hợp đồng..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-red-500 shadow-sm">
-                        </div>
-                        <select class="px-4 py-3 rounded-xl border border-gray-200 outline-none font-medium text-sm text-gray-600">
-                            <option>Tất cả trạng thái</option>
-                            <option>Sắp hết hạn (< 7 ngày)</option>
-                            <option>Đã hết hạn</option>
-                        </select>
-                    </div>
-
-                    <!-- Items -->
-                    <div class="bg-white rounded-xl card-shadow divide-y">
-                        <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center text-viettel-red font-bold">ST</div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">STAR-77881111</h4>
-                                    <p class="text-xs text-gray-500">Gói hiện tại: <span class="font-bold">Standard</span></p>
-                                    <p class="text-xs text-gray-500">Tàu: <span class="font-bold">QNg-90124-TS</span></p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col md:items-end">
-                                <p class="text-xs text-gray-400 uppercase font-bold">Ngày hết hạn</p>
-                                <p class="text-sm font-bold text-orange-500 italic">30/03/2024 (Còn 3 ngày)</p>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button class="px-4 py-2 border border-gray-200 rounded-lg text-xs font-bold hover:bg-gray-50">ĐỔI GÓI</button>
-                                <button class="px-4 py-2 bg-viettel-red text-white rounded-lg text-xs font-bold hover:bg-red-700 transition">GIA HẠN NGAY</button>
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 font-bold">ST</div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">STAR-77881122</h4>
-                                    <p class="text-xs text-gray-500">Gói hiện tại: <span class="font-bold">Premium</span></p>
-                                    <p class="text-xs text-gray-500">Tàu: <span class="font-bold">KH-88211-TS</span></p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col md:items-end">
-                                <p class="text-xs text-gray-400 uppercase font-bold">Ngày hết hạn</p>
-                                <p class="text-sm font-bold text-red-600 italic">20/03/2024 (Đã hết hạn)</p>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button class="px-4 py-2 bg-viettel-red text-white rounded-lg text-xs font-bold hover:bg-red-700 transition w-full md:w-auto">THANH TOÁN NỢ CƯỚC</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar Gói cước -->
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-xl card-shadow">
-                        <h3 class="font-bold text-gray-800 uppercase text-xs mb-4">Ưu đãi độc quyền</h3>
-                        <div class="p-4 bg-gradient-to-br from-red-500 to-red-700 rounded-xl text-white">
-                            <p class="text-[10px] uppercase font-bold opacity-80">Gói khuyến mãi</p>
-                            <h4 class="font-bold text-lg leading-tight mt-1">Gia hạn 12 tháng tặng 2 tháng</h4>
-                            <p class="text-xs mt-2 opacity-90 leading-relaxed">Áp dụng cho thuê bao Starlink Maritime đăng ký trước 30/04.</p>
-                            <button class="w-full mt-4 bg-white text-viettel-red py-2 rounded font-bold text-xs">XEM CHI TIẾT</button>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl card-shadow">
-                        <h3 class="font-bold text-gray-800 uppercase text-xs mb-4">Phương thức thanh toán</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center p-2 border rounded hover:border-red-500 cursor-pointer">
-                                <img src="https://vnpay.vn/s1/statics.vnpay.vn/2023/6/0oxhzjmxbksr1686814746087.png" class="w-8 h-8 object-contain mr-3">
-                                <span class="text-xs font-medium">VNPAY-QR</span>
-                            </div>
-                            <div class="flex items-center p-2 border rounded hover:border-red-500 cursor-pointer">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg4HNMFnJLLavO19NsgZZucD9GEVqPG-uG4Q&s" class="w-8 h-8 object-contain mr-3">
-                                <span class="text-xs font-medium">Viettel Money</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE: SUPPORT (HỖ TRỢ & BẢO HÀNH) - ALREADY DONE -->
-        <section id="page-support" class="page-content">
-            <div class="mb-8">
-                <h1 class="text-2xl font-bold text-gray-900">Trung tâm Bảo hành & Hỗ trợ Kỹ thuật</h1>
-                <p class="text-gray-600">Tra cứu trạng thái thiết bị và đăng ký gói sửa chữa chuyên dụng cho môi trường biển.</p>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl card-shadow mb-8 border-l-4 border-viettel-red">
-                <h3 class="font-bold text-gray-800 mb-4 uppercase text-xs">Tra cứu trạng thái thiết bị (Serial / Số hiệu tàu)</h3>
-                <div class="flex flex-col md:flex-row gap-4">
-                    <input type="text" id="serialSearch" placeholder="Nhập Serial S/N hoặc Số hiệu tàu (VD: Nhập 1 là Còn hạn, Nhập 2 là Hết hạn)" class="flex-grow p-3 border rounded-lg focus:ring-2 focus:ring-red-500 outline-none">
-                    <button onclick="checkWarranty()" class="bg-red-50 text-viettel-red border border-red-200 px-8 py-3 rounded-lg font-bold hover:bg-red-100 transition text-sm">KIỂM TRA NGAY</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-6">
-                    <div id="warranty-active" class="status-active p-6 rounded-xl hidden">
-                        <div class="flex items-start">
-                            <div class="p-3 bg-white rounded-full text-green-600 mr-4 shadow-sm"><i class="fas fa-check-circle fa-2x"></i></div>
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-bold mb-1">Thiết bị đang CÒN HẠN bảo hành</h3>
-                                <p class="text-sm opacity-90 mb-4">Mã số thiết bị: <span class="font-bold">STAR-77881111</span> | Tàu: <span class="font-bold">QNg-90111-TS</span></p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div class="bg-white bg-opacity-50 p-3 rounded-lg border border-green-200">
-                                        <p class="text-xs font-bold uppercase opacity-60">Ngày hết hạn</p>
-                                        <p class="text-lg font-bold">15/12/2024</p>
-                                    </div>
-                                    <div class="bg-white bg-opacity-50 p-3 rounded-lg border border-green-200">
-                                        <p class="text-xs font-bold uppercase opacity-60">Đặc quyền khả dụng</p>
-                                        <p class="text-sm font-bold"><i class="fas fa-magic mr-1"></i> Bảo trì & Vệ sinh muối biển miễn phí</p>
-                                    </div>
-                                </div>
-                                <button class="mt-4 bg-green-700 text-white px-6 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-green-800 transition">Đặt lịch bảo trì định kỳ</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="warranty-expired" class="status-expired p-6 rounded-xl hidden">
-                        <div class="flex items-start">
-                            <div class="p-3 bg-white rounded-full text-red-600 mr-4 shadow-sm"><i class="fas fa-exclamation-triangle fa-2x"></i></div>
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-bold mb-1">Thiết bị đã HẾT HẠN bảo hành</h3>
-                                <p class="text-sm opacity-90 mb-4">Mã số thiết bị: <span class="font-bold">STAR-77882222</span> | Tàu: <span class="font-bold">QNg-90222-TS</span></p>
-                                <p class="text-sm opacity-90 mb-4">Hệ thống ghi nhận thiết bị đã quá hạn bảo hành từ ngày <span class="font-bold">01/01/2024</span>.</p>
-                                <h4 class="font-bold text-red-900 mb-4 uppercase text-xs border-b border-red-200 pb-2">Gợi ý các gói dịch vụ sửa chữa chuyên dụng</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div class="bg-white p-4 rounded-xl shadow-sm border border-red-100 hover:shadow-md transition">
-                                        <div class="text-blue-500 mb-2"><i class="fas fa-vial fa-lg"></i></div>
-                                        <h5 class="font-bold text-gray-800 text-sm">Vệ sinh Muối biển</h5>
-                                        <p class="text-[10px] text-gray-500 mb-3 leading-relaxed">Tẩy rửa lớp muối bám, phủ Nano bảo vệ bề mặt anten vệ tinh.</p>
-                                        <p class="text-viettel-red font-bold text-sm mb-3">450.000đ</p>
-                                        <button class="w-full py-1.5 bg-gray-100 text-gray-700 rounded text-[11px] font-bold hover:bg-gray-200">CHỌN GÓI</button>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-xl shadow-sm border border-red-100 hover:shadow-md transition">
-                                        <div class="text-orange-500 mb-2"><i class="fas fa-tools fa-lg"></i></div>
-                                        <h5 class="font-bold text-gray-800 text-sm">Sửa chữa dịch vụ</h5>
-                                        <p class="text-[10px] text-gray-500 mb-3 leading-relaxed">Hỗ trợ xử lý sự cố và kiểm tra, sửa chữa thiết bị chuyên sâu.</p>
-                                        <p class="text-viettel-red font-bold text-sm mb-3">1.200.000đ</p>
-                                        <button class="w-full py-1.5 bg-gray-100 text-gray-700 rounded text-[11px] font-bold hover:bg-gray-200">CHỌN GÓI</button>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-xl shadow-sm border border-red-100 hover:shadow-md transition border-2 border-red-300">
-                                        <div class="text-red-600 mb-2"><i class="fas fa-shield-alt fa-lg"></i></div>
-                                        <h5 class="font-bold text-gray-800 text-sm">Gia hạn gói Bảo hành</h5>
-                                        <p class="text-[10px] text-gray-500 mb-3 leading-relaxed">Gia hạn thêm 12 tháng bảo hành phần cứng tiêu chuẩn Viettel.</p>
-                                        <p class="text-viettel-red font-bold text-sm mb-3">2.500.000đ</p>
-                                        <button class="w-full py-1.5 bg-viettel-red text-white rounded text-[11px] font-bold hover:bg-red-700 transition">GIA HẠN NGAY</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-xl card-shadow">
-                        <div class="flex justify-between items-center mb-4 border-b pb-2">
-                            <h3 class="font-bold text-gray-800 uppercase text-xs">Tài liệu hướng dẫn nhanh</h3>
-                            <a href="#" class="text-viettel-red text-xs font-bold hover:underline">Tất cả</a>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition">
-                                <div class="w-10 h-10 bg-red-50 text-viettel-red flex items-center justify-center rounded mr-3"><i class="fas fa-file-pdf fa-lg"></i></div>
-                                <div>
-                                    <p class="text-sm font-bold text-gray-700">Lắp đặt Anten</p>
-                                    <p class="text-[10px] text-gray-400">PDF • 2.4 MB</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition">
-                                <div class="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded mr-3"><i class="fas fa-video fa-lg"></i></div>
-                                <div>
-                                    <p class="text-sm font-bold text-gray-700">Xử lý lỗi Router</p>
-                                    <p class="text-[10px] text-gray-400">Video • 03:45</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="bg-red-50 border border-red-100 p-6 rounded-xl shadow-sm relative overflow-hidden">
+                    <!-- AI Support Hub -->
+                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl text-white shadow-xl relative overflow-hidden">
                         <div class="relative z-10">
-                            <h3 class="font-bold text-lg text-gray-900 mb-4 flex items-center">
-                                <span class="w-1.5 h-6 bg-viettel-red mr-2 rounded-full"></span>
-                                Kênh hỗ trợ 24/7
+                            <h3 class="font-bold text-lg mb-2 flex items-center">
+                                <span class="text-viettel-red mr-2">✨</span> AI Maritime Hub
                             </h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center p-3 bg-white rounded-lg border border-red-100 group cursor-pointer hover:border-red-400 transition">
-                                    <div class="w-10 h-10 bg-red-200 text-viettel-red rounded-full flex items-center justify-center mr-3 group-hover:bg-red-500 group-hover:text-white transition">
-                                        <i class="fas fa-phone-alt"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-[10px] text-gray-500 uppercase font-bold">Tổng đài khẩn cấp</p>
-                                        <p class="font-bold text-gray-900">1800 8168</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center p-3 bg-white rounded-lg border border-red-100 group cursor-pointer hover:border-red-400 transition">
-                                    <div class="w-10 h-10 bg-blue-200 text-blue-600 rounded-full flex items-center justify-center mr-3 group-hover:bg-blue-500 group-hover:text-white transition">
-                                        <i class="fas fa-comment-dots text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-[10px] text-gray-500 uppercase font-bold">Zalo OA Hỗ trợ</p>
-                                        <p class="font-bold text-gray-900">Viettel Maritime</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center p-3 bg-white rounded-lg border border-red-100 group cursor-pointer hover:border-red-400 transition">
-                                    <div class="w-10 h-10 bg-green-200 text-green-600 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-600 group-hover:text-white transition">
-                                        <i class="fas fa-satellite"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-[10px] text-gray-500 uppercase font-bold">Liên lạc vệ tinh</p>
-                                        <p class="font-bold text-gray-900">ID: SL-Maritime-01</p>
-                                    </div>
-                                </div>
+                            <p class="text-[11px] text-gray-400 mb-4">Hỏi AI về kỹ thuật, thủ tục hoặc tối ưu cước phí.</p>
+                            <div class="space-y-2">
+                                <input type="text" id="ai-query" placeholder="Mô tả sự cố của bạn..." class="w-full bg-gray-700 border-none text-xs p-3 rounded-lg outline-none focus:ring-1 focus:ring-red-500">
+                                <button onclick="askAI()" id="ai-ask-btn" class="w-full bg-viettel-red py-2.5 rounded-lg text-xs font-bold hover:bg-red-700 transition">
+                                    ✨ CHẨN ĐOÁN NGAY
+                                </button>
                             </div>
-                            <button class="w-full mt-6 bg-viettel-red text-white py-3 rounded-lg font-bold hover:bg-red-700 transition shadow-md shadow-red-200">YÊU CẦU GỌI LẠI</button>
+                            <div id="ai-response-area" class="mt-4 p-3 bg-gray-700/50 rounded-lg text-[10px] leading-relaxed hidden animate-pulse">
+                                Đang suy nghĩ...
+                            </div>
                         </div>
-                        <i class="fas fa-headset absolute -bottom-6 -right-6 text-8xl text-red-200 opacity-20"></i>
+                        <i class="fas fa-robot absolute -bottom-4 -right-4 text-7xl text-white/5"></i>
                     </div>
 
-                    <div class="bg-white p-6 rounded-xl card-shadow">
-                        <h3 class="font-bold text-gray-800 uppercase text-xs mb-4">Trạm kỹ thuật gần nhất</h3>
-                        <div class="space-y-3">
-                            <div class="p-3 border rounded bg-gray-50 border-gray-100 hover:border-red-200 transition">
-                                <p class="text-xs font-bold text-gray-700">Trạm Sa Kỳ (Quảng Ngãi)</p>
-                                <p class="text-[10px] text-gray-400">024 1234 5678 • Cách 12km</p>
+                    <!-- Usage Alerts -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+                        <h4 class="font-bold text-xs uppercase text-gray-400 mb-4 tracking-widest">Thông báo từ AI</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-2 h-2 rounded-full bg-orange-500 mt-1.5 mr-3"></div>
+                                <p class="text-[11px] text-gray-600">Phát hiện <strong>STAR-7788</strong> có lưu lượng tăng đột biến 300% lúc 2:00 sáng.</p>
                             </div>
-                            <div class="p-3 border rounded bg-gray-50 border-gray-100 hover:border-red-200 transition">
-                                <p class="text-xs font-bold text-gray-700">Trạm Hòn Rớ (Nha Trang)</p>
-                                <p class="text-[10px] text-gray-400">024 8888 9999 • Cách 45km</p>
+                            <div class="flex items-start">
+                                <div class="w-2 h-2 rounded-full bg-green-500 mt-1.5 mr-3"></div>
+                                <p class="text-[11px] text-gray-600">Đề xuất: Chuyển <strong>Tàu QNg-901</strong> sang gói Premium để tiết kiệm 15% chi phí vượt định mức.</p>
                             </div>
                         </div>
                     </div>
@@ -663,201 +226,189 @@
             </div>
         </section>
 
-        </div> <!-- End of app-content container wrapper -->
+        <!-- Other Pages (Placeholders) -->
+        <section id="page-sales" class="page-content">
+            <div class="bg-white p-12 rounded-2xl shadow-sm text-center">
+                <i class="fas fa-shopping-cart text-4xl text-gray-200 mb-4"></i>
+                <h2 class="text-xl font-bold">Quản lý Bán hàng</h2>
+                <p class="text-gray-500">Chức năng đang được tích hợp AI để tối ưu hóa quy trình Onboarding.</p>
+            </div>
+        </section>
+        
+        <section id="page-subscription" class="page-content">
+            <div class="bg-white p-12 rounded-2xl shadow-sm text-center">
+                <i class="fas fa-credit-card text-4xl text-gray-200 mb-4"></i>
+                <h2 class="text-xl font-bold">Gia hạn & Gói cước</h2>
+                <p class="text-gray-500">Hệ thống gợi ý gia hạn tự động bằng AI ✨</p>
+            </div>
+        </section>
+
+        <section id="page-support" class="page-content">
+            <div class="bg-white p-12 rounded-2xl shadow-sm text-center">
+                <i class="fas fa-headset text-4xl text-gray-200 mb-4"></i>
+                <h2 class="text-xl font-bold">Hỗ trợ & Bảo hành</h2>
+                <p class="text-gray-500">Kết nối trực tiếp với kỹ thuật viên hoặc Chatbot AI.</p>
+            </div>
+        </section>
+
+        </div>
     </main>
 
-    <!-- Modal: Register Form (Onboarding) -->
+    <!-- Modal: AI Advisor -->
     <div id="orderModal" class="modal">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden relative">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden relative">
             <div class="bg-viettel-red p-4 flex justify-between items-center text-white">
                 <div class="flex items-center">
-                    <i class="fas fa-file-contract mr-3"></i>
-                    <h3 class="font-bold uppercase text-sm tracking-widest">Đăng ký dịch vụ Starlink Maritime</h3>
+                    <i class="fas fa-wand-magic-sparkles mr-3"></i>
+                    <h3 class="font-bold uppercase text-xs tracking-widest">✨ Tư vấn cấu hình bằng AI</h3>
                 </div>
-                <button onclick="closeOrderModal()" class="hover:rotate-90 transition"><i class="fas fa-times"></i></button>
+                <button onclick="closeOrderModal()"><i class="fas fa-times"></i></button>
             </div>
-            <form class="p-8 space-y-6" onsubmit="event.preventDefault(); alert('Dữ liệu đã được gửi lên hệ thống quản lý Onboarding!'); closeOrderModal();">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Họ tên chủ tàu</label>
-                        <input type="text" required class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-red-500" placeholder="Nguyễn Văn A">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Số hiệu tàu</label>
-                        <input type="text" required class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-red-500" placeholder="QNg-90xxx-TS">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Số điện thoại liên hệ</label>
-                        <input type="tel" required class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-red-500" placeholder="09xx.xxx.xxx">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-gray-500 uppercase">Gói dịch vụ đăng ký</label>
-                        <select class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-red-500">
-                            <option>Maritime 50GB - 5.5tr/tháng</option>
-                            <option>Maritime 1TB - 12tr/tháng</option>
-                            <option>Maritime Unlimited - 25tr/tháng</option>
+            <div class="p-6">
+                <p class="text-xs text-gray-500 mb-6">Hãy cho AI biết nhu cầu của bạn để nhận đề xuất tối ưu nhất.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Loại tàu & Kích cỡ</label>
+                        <select id="ship-type" class="w-full p-2 border rounded-lg text-sm">
+                            <option>Tàu đánh bắt xa bờ (Vỏ gỗ/thép)</option>
+                            <option>Tàu vận tải/Container</option>
+                            <option>Du thuyền cá nhân</option>
                         </select>
                     </div>
-                </div>
-                <div class="space-y-2">
-                    <label class="text-xs font-bold text-gray-500 uppercase">Địa chỉ cảng lắp đặt</label>
-                    <textarea rows="2" class="w-full p-3 border rounded-lg outline-none focus:ring-2 focus:ring-red-500" placeholder="Cảng Sa Kỳ, xã Bình Châu, huyện Bình Sơn..."></textarea>
-                </div>
-                <div class="flex items-center p-4 bg-gray-50 rounded-lg border border-dashed">
-                    <i class="fas fa-cloud-upload-alt text-gray-400 text-2xl mr-4"></i>
-                    <div class="flex-grow">
-                        <p class="text-xs font-bold text-gray-700">Đính kèm hồ sơ (CMND/GPKD)</p>
-                        <p class="text-[10px] text-gray-500">Kéo thả hoặc nhấn để chọn file (JPG, PDF)</p>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Số lượng thuyền viên kết nối</label>
+                        <input type="number" id="crew-count" placeholder="VD: 15" class="w-full p-2 border rounded-lg text-sm">
                     </div>
-                    <button type="button" class="text-viettel-red text-xs font-bold">CHỌN FILE</button>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Nhu cầu sử dụng chính</label>
+                        <div class="grid grid-cols-2 gap-2 mt-1">
+                            <button class="p-2 border rounded text-[10px] font-bold hover:border-red-500">Giám sát hành trình</button>
+                            <button class="p-2 border rounded text-[10px] font-bold hover:border-red-500">Giải trí (TikTok/Youtube)</button>
+                            <button class="p-2 border rounded text-[10px] font-bold hover:border-red-500">Liên lạc Zalo/Video Call</button>
+                            <button class="p-2 border rounded text-[10px] font-bold hover:border-red-500">Toàn bộ nhu cầu</button>
+                        </div>
+                    </div>
+                    <button onclick="getAIProposal()" id="proposal-btn" class="w-full py-3 bg-viettel-red text-white rounded-lg font-bold text-sm shadow-lg shadow-red-200">
+                        ✨ TẠO ĐỀ XUẤT NGAY
+                    </button>
+                    <div id="proposal-result" class="hidden p-4 bg-gray-50 border-2 border-dashed rounded-xl text-xs leading-relaxed text-gray-700">
+                        <!-- AI Response here -->
+                    </div>
                 </div>
-                <div class="flex gap-4 pt-4 border-t">
-                    <button type="button" onclick="closeOrderModal()" class="flex-grow py-3 border rounded-lg font-bold text-gray-500 hover:bg-gray-50 transition">HỦY BỎ</button>
-                    <button type="submit" class="flex-grow py-3 bg-viettel-red text-white rounded-lg font-bold hover:bg-red-700 shadow-lg shadow-red-200 transition">TẠO ĐƠN HÀNG</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <!-- Interactive JS -->
+    <!-- AI Integration Scripts -->
     <script>
+        const apiKey = ""; // API Key được cung cấp tự động bởi môi trường
+
+        async function callGemini(prompt, systemInstruction = "") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined
+            };
+
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    return result.candidates?.[0]?.content?.parts?.[0]?.text || "Không có phản hồi từ AI.";
+                } catch (e) {
+                    const delay = Math.pow(2, i) * 1000;
+                    await new Promise(r => setTimeout(r, delay));
+                }
+            }
+            return "Lỗi kết nối AI. Vui lòng thử lại.";
+        }
+
+        async function analyzeTraffic() {
+            const insightBox = document.getElementById('ai-insight-box');
+            const insightText = document.getElementById('ai-insight-text');
+            
+            insightBox.classList.remove('hidden');
+            insightText.innerText = "✨ AI đang phân tích dữ liệu lưu lượng thực tế...";
+
+            const prompt = "Dựa trên dữ liệu lưu lượng Mbps: Basic(20), Standard(45), Premium(75). Hãy viết 1 câu nhận xét ngắn gọn (dưới 30 từ) về tình trạng mạng và gợi ý tối ưu cho người dùng Viettel Maritime.";
+            const response = await callGemini(prompt, "Bạn là chuyên gia phân tích hạ tầng mạng vệ tinh Viettel Starlink.");
+            
+            insightText.innerText = response;
+        }
+
+        async function askAI() {
+            const query = document.getElementById('ai-query').value;
+            const btn = document.getElementById('ai-ask-btn');
+            const area = document.getElementById('ai-response-area');
+
+            if (!query) return;
+
+            btn.disabled = true;
+            area.classList.remove('hidden');
+            area.classList.add('animate-pulse');
+            area.innerText = "✨ Đang chẩn đoán kỹ thuật...";
+
+            const prompt = `Khách hàng báo lỗi: "${query}". Hãy đưa ra 3 bước khắc phục sự cố ngắn gọn theo phong cách kỹ thuật viên Viettel.`;
+            const response = await callGemini(prompt, "Bạn là Trợ lý Kỹ thuật Starlink của Viettel. Trả lời bằng tiếng Việt, ngắn gọn, súc tích.");
+            
+            area.classList.remove('animate-pulse');
+            area.innerText = response;
+            btn.disabled = false;
+        }
+
+        async function getAIProposal() {
+            const btn = document.getElementById('proposal-btn');
+            const result = document.getElementById('proposal-result');
+            const ship = document.getElementById('ship-type').value;
+            const crew = document.getElementById('crew-count').value || 10;
+
+            btn.disabled = true;
+            btn.innerText = "✨ ĐANG TÍNH TOÁN...";
+            result.classList.remove('hidden');
+            result.innerText = "AI đang mô phỏng cấu hình tối ưu...";
+
+            const prompt = `Đề xuất gói cước Starlink Maritime cho tàu ${ship} với ${crew} người dùng. Nhu cầu: Video Call và Giải trí. Hãy đưa ra lựa chọn Gói (Basic/Standard/Premium) và lý do tại sao. Trả lời dưới 100 từ.`;
+            const response = await callGemini(prompt, "Bạn là tư vấn viên giải pháp viễn thông biển của Viettel.");
+
+            result.innerText = response;
+            btn.disabled = false;
+            btn.innerText = "✨ TẠO ĐỀ XUẤT NGAY";
+        }
+
+        // --- Core UI Logic ---
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
-            const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active', 'border-viettel-red');
-                link.classList.add('border-transparent');
-            });
-            const activeNav = document.getElementById('nav-' + pageId);
-            if (activeNav) {
-                activeNav.classList.add('active', 'border-viettel-red');
-                activeNav.classList.remove('border-transparent');
-            }
+            document.getElementById('page-' + pageId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
         }
 
-        function checkWarranty() {
-            const val = document.getElementById('serialSearch').value.toUpperCase();
-            const activeBox = document.getElementById('warranty-active');
-            const expiredBox = document.getElementById('warranty-expired');
-            
-            activeBox.classList.add('hidden');
-            expiredBox.classList.add('hidden');
+        function openOrderModal() { document.getElementById('orderModal').classList.add('active'); }
+        function closeOrderModal() { document.getElementById('orderModal').classList.remove('active'); }
 
-            if (!val) return;
-
-            // Simple logic for demo: if contains '1' show active, else show expired
-            if (val.includes('1')) {
-                activeBox.classList.remove('hidden');
-                activeBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                expiredBox.classList.remove('hidden');
-                expiredBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
-        function openOrderModal() {
-            document.getElementById('orderModal').classList.add('active');
-        }
-
-        function closeOrderModal() {
-            document.getElementById('orderModal').classList.remove('active');
-        }
-
-        // Auto-show overview on load (or use support as per previous flow)
-        document.addEventListener('DOMContentLoaded', () => {
-            // Default to overview for a complete view of the product
-            showPage('overview');
-        });
-        // Real-time Chart Logic for 24h
-        let usageChartInstance;
-        function initUsageChart() {
+        // Chart Initialization
+        function initChart() {
             const ctx = document.getElementById('usageChart').getContext('2d');
-            
-            const labels = Array.from({length: 24}, (_, i) => `${i.toString().padStart(2, '0')}h`);
-            
-            const generateMock24hData = (base, variance, peakHour = 14) => {
-                return labels.map((_, i) => {
-                    const timeEffect = Math.exp(-Math.pow(i - peakHour, 2) / 30);
-                    const randomVariance = (Math.random() - 0.5) * variance;
-                    return Math.max(0, base + (base * 0.4 * timeEffect) + randomVariance);
-                });
-            };
-
-            const data = {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Basic (Mini)',
-                        data: generateMock24hData(20, 5, 12),
-                        borderColor: '#10B981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                        borderWidth: 2.5,
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 2
-                    },
-                    {
-                        label: 'Standard',
-                        data: generateMock24hData(45, 10, 14),
-                        borderColor: '#EE0000',
-                        backgroundColor: 'rgba(238, 0, 0, 0.1)',
-                        borderWidth: 2.5,
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 2
-                    },
-                    {
-                        label: 'Premium',
-                        data: generateMock24hData(75, 15, 15),
-                        borderColor: '#2563EB',
-                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                        borderWidth: 2.5,
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 2
-                    }
-                ]
-            };
-
-            usageChartInstance = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'line',
-                data: data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { 
-                            beginAtZero: true, 
-                            max: 120, 
-                            ticks: { callback: function(value) { return value + ' Mbps'; } } 
-                        },
-                        x: { ticks: { font: { size: 9 } } }
-                    },
-                    plugins: { 
-                        legend: { display: false },
-                        tooltip: { mode: 'index', intersect: false }
-                    }
-                }
+                data: {
+                    labels: Array.from({length: 12}, (_, i) => i*2 + 'h'),
+                    datasets: [
+                        { label: 'Basic', data: [10, 15, 8, 25, 40, 20, 15, 10, 12, 18, 22, 15], borderColor: '#10B981', tension: 0.4 },
+                        { label: 'Standard', data: [30, 35, 32, 45, 60, 55, 40, 35, 38, 42, 50, 45], borderColor: '#EE0000', tension: 0.4 },
+                        { label: 'Premium', data: [60, 65, 70, 85, 95, 90, 80, 75, 78, 85, 92, 88], borderColor: '#2563EB', tension: 0.4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
             });
-
-            setInterval(() => {
-                if(usageChartInstance) {
-                    usageChartInstance.data.datasets.forEach(ds => {
-                        const lastIdx = ds.data.length - 1;
-                        ds.data[lastIdx] += (Math.random() - 0.5) * 2;
-                    });
-                    usageChartInstance.update('none');
-                }
-            }, 5000);
         }
 
-        // Initialize on load
-        window.onload = function() {
-            showPage('overview');
-            initUsageChart();
+        window.onload = () => {
+            initChart();
         };
     </script>
 </body>
